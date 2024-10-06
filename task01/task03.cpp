@@ -12,22 +12,14 @@ bool toInt(const char character, int *theInt) {
 
 
 int decode(const char *line) {
-    int iterator = 0;
-    int firstDigit = -1;
-    int lastDigit = -1;
-    while (line[iterator] != '\0') {
-        int currentDigit;
+    int firstDigit = -1, lastDigit = -1, currentDigit;
+    for (int iterator = 0; line[iterator] != '\0'; ++iterator) {
         if (toInt(line[iterator], &currentDigit)) {
-            if (firstDigit == -1) {
-                firstDigit = currentDigit;
-            }
+            if (firstDigit == -1) firstDigit = currentDigit;
             lastDigit = currentDigit;
         }
-        iterator++;
     }
-    if (firstDigit == -1) {
-        throw std::invalid_argument("no digits found");
-    }
+    if (firstDigit == -1) throw std::invalid_argument("no digits found");
     return (firstDigit * 10) + lastDigit;
 }
 
