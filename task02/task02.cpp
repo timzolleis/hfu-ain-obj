@@ -11,7 +11,6 @@ bool toInt(const char character, int *theInt) {
     return false;
 }
 
-
 int decode(const char *line) {
     int firstDigit = -1, lastDigit = -1, currentDigit;
     for (int iterator = 0; line[iterator] != '\0'; ++iterator) {
@@ -25,15 +24,24 @@ int decode(const char *line) {
 }
 
 void decodeTest() {
-    assert(decode("1xyz2") == 12);
-    assert(decode("abc3pqr8ijk") == 38);
-    assert(decode("x1y2z3v4w5q") == 15);
-    assert(decode("hello7world") == 77);
+    const std::string lines[] = {
+        "1abc2",
+        "pqr3stu8vwx",
+        "a1b2c3d4e5f",
+        "treb7uchet"
+    };
+    constexpr int expected[]{12, 38, 15, 77};
+    for (int i = 0; i < 4; ++i) {
+        assert(decode(lines[i].c_str()) == expected[i]);
+    }
+    try {
+        decode("no digit");
+        assert(false);
+    } catch (std::invalid_argument &e) {
+        assert(true);
+    }
 }
-
 
 int main() {
     decodeTest();
-    decodeTestAccordingToTask2();
-    return 0;
 }

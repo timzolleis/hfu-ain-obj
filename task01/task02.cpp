@@ -4,7 +4,6 @@
 
 
 #include <cassert>
-#include <stdexcept>
 
 bool toInt(const char character, int *theInt) {
     if (character >= '0' && character <= '9') {
@@ -16,15 +15,16 @@ bool toInt(const char character, int *theInt) {
 }
 
 void toIntTest() {
-    int result = 0;
-    int isValid = toInt('1', &result);
-    assert(isValid && result == 1);
-    int isValid2 = toInt('9', &result);
+    int result = -1;
+    const int isValid = toInt('0', &result);
+    assert(isValid && result == 0);
+    result = -1;
+    const int isValid2 = toInt('9', &result);
     assert(isValid2 && result == 9);
-    int isValid3 = toInt('a', &result);
-    assert(!isValid3);
+    result = -1;
+    const int isValid3 = toInt('x', &result);
+    assert(!isValid3 && result == -1);
 }
-
 
 int main() {
     toIntTest();
