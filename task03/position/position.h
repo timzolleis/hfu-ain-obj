@@ -1,6 +1,7 @@
 //
 // Created by Tim Zolleis on 22.10.24.
 //
+#pragma once
 #include <string>
 
 #ifndef POSITION_H
