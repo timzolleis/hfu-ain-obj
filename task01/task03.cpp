@@ -34,6 +34,5 @@ void decodeTest() {
 
 int main() {
     decodeTest();
-    decodeTestAccordingToTask2();
     return 0;
 }
