@@ -4,22 +4,20 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "../../task03/position/position.h"
 
 
 #ifndef CITY_H
 #define CITY_H
-#include "../poi//poi.h"
 
 namespace tz {
     class City {
     private:
-        std::string name;
-        int x;
-        int y;
-        std::vector<POI> pointsOfInterest;
+        Position position;
+        std::vector<std::string> pointsOfInterest;
 
     public:
-        City(const std::string &name, int x, int y);
+        City(const Position &position, const std::string pois[], int poiLength);
 
         const std::string &getName();
 
@@ -29,9 +27,9 @@ namespace tz {
 
         unsigned long getNumberOfPOIs() const;
 
-        POI &getPOI(int index);
+        const std::string &getPOI(int index);
 
-        void setPOI(int index, const POI &poi);
+        void setPOI(int index, const std::string &poi);
     };
 } // tz
 
