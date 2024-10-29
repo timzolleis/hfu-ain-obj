@@ -4,12 +4,20 @@
 
 #include "city.h"
 
+#include <iostream>
+
 
 namespace tz {
-    City::City(const Position &position, const std::string pois[], int poiLength): position(position) {
+    City::City(const Position &position, const std::string pointsOfInterest[], int poiLength): position(position) {
+        this->pointsOfInterest = new std::string[poiLength];
         for (int i = 0; i < poiLength; i++) {
-            this->pointsOfInterest.push_back(pois[i]);
+            this->pointsOfInterest[i] = pointsOfInterest[i];
         }
+        this->currentSize = poiLength;
+    }
+
+    City::~City() {
+        delete[] pointsOfInterest;
     }
 
     const std::string &City::getName() {
@@ -25,14 +33,20 @@ namespace tz {
     }
 
     unsigned long City::getNumberOfPOIs() const {
-        return this->pointsOfInterest.size();
+        return this->currentSize;
     }
 
     const std::string &City::getPOI(const int index) {
-        return this->pointsOfInterest.at(index);
+        if (index >= this->getNumberOfPOIs()) {
+            throw std::invalid_argument("Index out of bounds");
+        }
+        return this->pointsOfInterest[index];
     }
 
     void City::setPOI(const int index, const std::string &poi) {
-        this->pointsOfInterest.at(index) = poi;
+        if (index >= this->getNumberOfPOIs()) {
+            throw std::invalid_argument("Index out of bounds");
+        }
+        this->pointsOfInterest[index] = poi;
     }
 }

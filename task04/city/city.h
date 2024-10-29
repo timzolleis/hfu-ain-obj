@@ -14,10 +14,16 @@ namespace tz {
     class City {
     private:
         Position position;
-        std::vector<std::string> pointsOfInterest;
+        std::string *pointsOfInterest;
+
+        void updateSize(int newSize);
+
+        int currentSize = 0;
 
     public:
-        City(const Position &position, const std::string pois[], int poiLength);
+        City(const Position &position, const std::string pointsOfInterest[], int poiLength);
+
+        ~City();
 
         const std::string &getName();
 

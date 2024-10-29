@@ -2,6 +2,7 @@
 // Created by Tim Zolleis on 29.10.24.
 //
 #include <cassert>
+#include <iostream>
 #include <string>
 #include "city/city.h"
 #include "../task03/position/position.h"
@@ -60,7 +61,8 @@ void testSetPOI(){
     try {
         city.setPOI(3,"Gandalf");
         assert(false);
-    }catch (...){}
+    }catch (...) {
+    }
     try {
         city.setPOI(-1,"Gandalf");
         assert(false);

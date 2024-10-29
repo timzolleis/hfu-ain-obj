@@ -20,7 +20,7 @@ void test_sort(int *numbers, const int size) {
 }
 
 
-void sortTest() {
+void test_sort() {
     int testCases[4][4] = {
         {1, 2, 3, 4},
         {5, 6, 7, 8},
