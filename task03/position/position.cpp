@@ -12,15 +12,15 @@ namespace tz {
         return this->name;
     }
 
-    int Position::getX() {
+    int Position::getX() const {
         return this->x;
     }
 
-    int Position::getY() {
+    int Position::getY() const {
         return this->y;
     }
 
-    int Position::compare(Position &other) {
+    int Position::compare(const Position &other) {
         if (this->name != other.name) {
             return this->name < other.name ? -1 : 1;
         }

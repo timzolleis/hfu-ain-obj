@@ -14,11 +14,11 @@ namespace tz {
 
         const std::string &getName();
 
-        int getX();
+        int getX() const;
 
-        int getY();
+        int getY() const;
 
-        int compare(Position &other);
+        int compare(const Position &other);
 
     private:
         std::string name;

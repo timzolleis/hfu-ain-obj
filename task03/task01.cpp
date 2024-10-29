@@ -28,7 +28,7 @@ void sortTest() {
         {13, 14, 15, 16}
     };
     for (int i = 0; i < 4; i++) {
-        test_sort(testCases[i], 4);+
+        test_sort(testCases[i], 4);
     }
 }
 

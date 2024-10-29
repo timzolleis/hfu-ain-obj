@@ -17,7 +17,7 @@ namespace tz {
             return this->x;
         }
 
-        int getY() {
+        int getY() const {
             return this->y;
         }
 
