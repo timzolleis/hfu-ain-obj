@@ -32,7 +32,7 @@ namespace tz {
         return this->position.getY();
     }
 
-    unsigned long City::getNumberOfPOIs() const {
+    int City::getNumberOfPOIs() const {
         return this->currentSize;
     }
 

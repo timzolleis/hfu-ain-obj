@@ -2,7 +2,6 @@
 // Created by Tim Zolleis on 29.10.24.
 //
 #pragma once
-#include <string>
 #include <vector>
 #include "../../task03/position/position.h"
 
@@ -15,9 +14,6 @@ namespace tz {
     private:
         Position position;
         std::string *pointsOfInterest;
-
-        void updateSize(int newSize);
-
         int currentSize = 0;
 
     public:
@@ -31,7 +27,7 @@ namespace tz {
 
         int getY() const;
 
-        unsigned long getNumberOfPOIs() const;
+        int getNumberOfPOIs() const;
 
         const std::string &getPOI(int index);
 
