@@ -29,9 +29,9 @@ namespace tz {
 
         int getNumberOfPOIs() const;
 
-        const std::string &getPOI(int index);
+        const std::string &getPOI(int index) const;
 
-        void setPOI(int index, const std::string &poi);
+        void setPOI(int index, const std::string &poi) const;
     };
 } // tz
 

@@ -36,14 +36,14 @@ namespace tz {
         return this->currentSize;
     }
 
-    const std::string &City::getPOI(const int index) {
+    const std::string &City::getPOI(const int index) const {
         if (index >= this->getNumberOfPOIs()) {
             throw std::invalid_argument("Index out of bounds");
         }
         return this->pointsOfInterest[index];
     }
 
-    void City::setPOI(const int index, const std::string &poi) {
+    void City::setPOI(const int index, const std::string &poi) const {
         if (index >= this->getNumberOfPOIs()) {
             throw std::invalid_argument("Index out of bounds");
         }
