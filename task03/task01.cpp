@@ -33,6 +33,6 @@ void test_sort() {
 }
 
 int main() {
-    sortTest();
+    test_sort();
     return 0;
 }
