@@ -16,7 +16,8 @@ namespace tz {
         std::string *pointsOfInterest;
         int currentSize = 0;
 
-        bool validateIndex(int index) const;
+        void validateIndexOrThrow(int index) const;
+
         static std::string *initializePointsOfInterest(const std::string pointsOfInterest[], int length);
 
     public:

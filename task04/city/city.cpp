@@ -42,20 +42,18 @@ namespace tz {
     }
 
     const std::string &City::getPOI(const int index) const {
-        if (!this->validateIndex(index)) {
-            throw std::invalid_argument("Index out of bounds");
-        }
+        this->validateIndexOrThrow(index);
         return this->pointsOfInterest[index];
     }
 
     void City::setPOI(const int index, const std::string &poi) const {
-        if (!this->validateIndex(index)) {
-            throw std::invalid_argument("Index out of bounds");
-        }
+        this->validateIndexOrThrow(index);
         this->pointsOfInterest[index] = poi;
     }
 
-    bool City::validateIndex(int index) const {
-        return index >= 0 && index < this->getNumberOfPOIs();
+    void City::validateIndexOrThrow(int index) const {
+        if (index < 0 || index >= this->getNumberOfPOIs()) {
+            throw std::invalid_argument("Index out of bounds");
+        }
     }
 }
