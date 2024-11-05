@@ -8,26 +8,22 @@
 
 
 namespace tz {
-    //This approach can be used if we HAVE to use initializers instead of a constructor
-    /*std::string *initializeArray(const std::string pointsOfInterest[], int length) {
-        std::string *result = new std::string[length];
-        for (int i = 0; i < length; i++) {
-            result[i] = pointsOfInterest[i];
-        }
-        return result;
-    }*/
-
     City::City(const Position &position, const std::string pointsOfInterest[], int poiLength): position(position),
-        currentSize(poiLength) {
-        this->pointsOfInterest = new std::string[poiLength];
-        for (int i = 0; i < poiLength; i++) {
-            this->pointsOfInterest[i] = pointsOfInterest[i];
-        }
+        pointsOfInterest(initializePointsOfInterest(pointsOfInterest, poiLength)), currentSize(poiLength) {
     }
 
     City::~City() {
         delete[] pointsOfInterest;
     }
+
+    std::string *City::initializePointsOfInterest(const std::string pointsOfInterest[], int length) {
+        auto *result = new std::string[length];
+        for (int i = 0; i < length; i++) {
+            result[i] = pointsOfInterest[i];
+        }
+        return result;
+    }
+
 
     const std::string &City::getName() {
         return this->position.getName();

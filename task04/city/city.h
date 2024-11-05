@@ -17,6 +17,7 @@ namespace tz {
         int currentSize = 0;
 
         bool validateIndex(int index) const;
+        static std::string *initializePointsOfInterest(const std::string pointsOfInterest[], int length);
 
     public:
         City(const Position &position, const std::string pointsOfInterest[], int poiLength);
