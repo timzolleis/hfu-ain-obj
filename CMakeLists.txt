@@ -26,3 +26,10 @@ add_executable(task03_task04 task03/task04.cpp ${task03_position})
 file(GLOB task04_city task04/city/*.cpp task04/city/*.h)
 #Task04
 add_executable(task04_task01 task04/task01.cpp ${task04_city} ${task03_position})
+
+file(GLOB task05_city task05/city/*)
+file(GLOB position shared/position/*)
+
+#Task05
+add_executable(task05_task01 task05/task01.cpp ${task05_city} ${position})
+add_executable(task05_task04 task05/task04.cpp ${task05_city} ${position})
