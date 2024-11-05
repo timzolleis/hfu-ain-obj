@@ -3,7 +3,7 @@
 //
 #pragma once
 #include <vector>
-#include "../../task03/position/position.h"
+#include "../../shared/position/position.h"
 
 
 #ifndef CITY_H

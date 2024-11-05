@@ -5,7 +5,6 @@
 #include <iostream>
 #include <string>
 #include "city/city.h"
-#include "../task03/position/position.h"
 
 
 tz::Position createPosition(){

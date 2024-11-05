@@ -4,8 +4,6 @@
 
 #include "city.h"
 
-#include <iostream>
-
 
 namespace tz {
     City::City(const Position &position, const std::string pointsOfInterest[], int poiLength): position(position),
