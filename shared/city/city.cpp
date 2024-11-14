@@ -12,8 +12,8 @@ namespace tz {
                                    currentSize(other.currentSize) {
     }
 
-    City::City(const std::string &name, int x, int y, std::string *pois, int length): position(Position(name, x, y)),
-        pointsOfInterest(initializePointsOfInterest(pois, length)), currentSize(length) {
+    City::City(const std::string &name, int x, int y, std::string *pois, int length): City(Position(name, x, y), pois,
+        length) {
     }
 
 
