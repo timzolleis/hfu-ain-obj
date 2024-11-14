@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 file(GLOB task05_city task05/city/*)
 file(GLOB position shared/position/*)
+file(GLOB city shared/city/*)
 
 # Task 01
 add_executable(task01_task01 task01/task01.cpp)
@@ -36,3 +37,6 @@ add_executable(task04_task01 task04/task01.cpp ${task04_city} ${position})
 #Task05
 add_executable(task05_task01 task05/task01.cpp ${task05_city} ${position})
 add_executable(task05_task04 task05/task04.cpp ${task05_city} ${position})
+
+#Task06
+add_executable(task06_task01 task06/task01.cpp ${city} ${position})

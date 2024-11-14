@@ -10,9 +10,8 @@ namespace tz {
     City::City(const City &other): position(other.position), pointsOfInterest(initializePointsOfInterest(other.pointsOfInterest, other.currentSize)), currentSize(other.currentSize) {
     }
 
-    City::City(const std::string &name, int x, int y, std::string *pois, int length): position(Position(name, x, y)), pointsOfInterest(initializePointsOfInterest(pois, length)), currentSize(length) {
+    City::City(const std::string &name, int x, int y, std::string *pois, int length): City(Position(name, x, y), pois, length) {
     }
-
 
     City::City(const Position &position, const std::string pointsOfInterest[], int poiLength): position(position),
         pointsOfInterest(initializePointsOfInterest(pointsOfInterest, poiLength)), currentSize(poiLength) {
