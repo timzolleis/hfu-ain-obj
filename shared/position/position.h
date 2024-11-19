@@ -12,15 +12,23 @@ namespace tz {
     public:
         Position(const std::string &name, int x, int y);
 
-        const std::string &getName();
+        const std::string &getName() const;
 
         int getX() const;
 
         int getY() const;
 
-        int compare(const Position &other);
+        bool operator==(const Position &other);
+
+        bool operator!=(const Position &other);
+
+        int operator<=>(const Position &other);
 
     private:
+        int compare(const Position &other);
+
+        friend std::ostream &operator<<(std::ostream &os, const Position &city);
+
         std::string name;
         int x;
         int y;

@@ -18,6 +18,7 @@ namespace tz {
 
         void validateIndexOrThrow(int index) const;
 
+
         static std::string *initializePointsOfInterest(const std::string pointsOfInterest[], int length);
 
         City(const Position &position, const std::string pointsOfInterest[], int poiLength);

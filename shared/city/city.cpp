@@ -4,6 +4,9 @@
 
 #include "city.h"
 
+#include <iostream>
+#include <ostream>
+
 
 namespace tz {
     City::City(const City &other): position(other.position),
@@ -41,7 +44,7 @@ namespace tz {
     }
 
 
-    const std::string &City::getName() {
+    const std::string &City::getName() const {
         return this->position.getName();
     }
 
@@ -119,5 +122,17 @@ namespace tz {
         if (index < 0 || index >= this->getNumberOfPOIs()) {
             throw std::invalid_argument("Index out of bounds");
         }
+    }
+
+    const Position &City::getPosition() {
+        return this->position;
+    }
+
+    std::ostream &operator<<(std::ostream &os, const City &city) {
+        os << city.position;
+        for (int i = 0; i < city.currentSize; i++) {
+            os << city.pointsOfInterest[i] << std::endl;
+        }
+        return os;
     }
 }

@@ -18,6 +18,11 @@ namespace tz {
 
         void validateIndexOrThrow(int index) const;
 
+        const Position &getPosition();
+
+        friend std::ostream &operator<<(std::ostream &os, const City &city);
+
+
         static std::string *initializePointsOfInterest(const std::string pointsOfInterest[], int length);
 
         City(const Position &position, const std::string pointsOfInterest[], int poiLength);
@@ -25,8 +30,6 @@ namespace tz {
         void resizePointsOfInterest(int newSize, int oldSize);
 
         int determineNewSize(const std::string &poiToRemove) const;
-
-
 
     public:
         City(const City &other);
@@ -37,7 +40,7 @@ namespace tz {
 
         ~City();
 
-        const std::string &getName();
+        const std::string &getName() const;
 
         int getX() const;
 
