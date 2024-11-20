@@ -66,10 +66,10 @@ namespace tz {
     }
 
     void City::add(const std::string &poiName) {
-        int newSize = this->currentSize + 1;
-        this->resizePointsOfInterest(newSize, this->currentSize);
-        this->setPOI(this->currentSize, poiName);
-        this->currentSize = newSize;
+        const int oldSize = this->currentSize;
+        this->currentSize++;
+        this->resizePointsOfInterest(this->currentSize, oldSize);
+        this->setPOI(oldSize, poiName);
     }
 
     //This could be much smaller with std::remove_if, but im not sure if we're allowed to use that^^
