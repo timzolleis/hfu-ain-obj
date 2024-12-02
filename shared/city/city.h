@@ -22,7 +22,6 @@ namespace tz {
 
         friend std::ostream &operator<<(std::ostream &os, const City &city);
 
-
         static std::string *initializePointsOfInterest(const std::string pointsOfInterest[], int length);
 
         City(const Position &position, const std::string pointsOfInterest[], int poiLength);
@@ -30,6 +29,10 @@ namespace tz {
         void resizePointsOfInterest(int newSize, int oldSize);
 
         int determineNewSize(const std::string &poiToRemove) const;
+
+        const std::string &getPOI(int index) const;
+
+        void setPOI(int index, const std::string &poi) const;
 
     public:
         City(const City &other);
@@ -48,9 +51,7 @@ namespace tz {
 
         int getNumberOfPOIs() const;
 
-        const std::string &getPOI(int index) const;
-
-        void setPOI(int index, const std::string &poi) const;
+        const std::string &operator[](int index) const;
 
         void add(const std::string &poiName);
 

@@ -60,6 +60,11 @@ namespace tz {
         return this->currentSize;
     }
 
+    const std::string &City::operator[](int index) const {
+        this->validateIndexOrThrow(index);
+        return this->getPOI(index);
+    }
+
     const std::string &City::getPOI(const int index) const {
         this->validateIndexOrThrow(index);
         return this->pointsOfInterest[index];

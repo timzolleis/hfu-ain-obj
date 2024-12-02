@@ -45,3 +45,8 @@ add_executable(task06_task01 task06/task01.cpp ${city} ${position})
 #Task07
 add_executable(task07_task01 task07/task01.cpp ${city} ${position})
 add_executable(task07_task02 task07/task02.cpp ${city} ${position})
+
+
+#Task08
+add_executable(task08_task01 task08/task01.cpp ${city} ${position})
+add_executable(task08_task02 task08/task02.cpp ${city} ${position})
