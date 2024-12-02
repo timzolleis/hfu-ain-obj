@@ -1,7 +1,7 @@
 #include <cassert>
 #include <string>
 
-#include "../shared/city/city.h"
+#include "./city/city.h"
 //
 // Created by Tim Zolleis on 02.12.24.
 //

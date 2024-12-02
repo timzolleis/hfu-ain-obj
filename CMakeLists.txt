@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.29)
 project(hfu_ain_obj)
 
 set(CMAKE_CXX_STANDARD 20)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 file(GLOB task05_city task05/city/*)
 file(GLOB position shared/position/*)
@@ -48,5 +48,7 @@ add_executable(task07_task02 task07/task02.cpp ${city} ${position})
 
 
 #Task08
-add_executable(task08_task01 task08/task01.cpp ${city} ${position})
-add_executable(task08_task02 task08/task02.cpp ${city} ${position})
+file(GLOB task08_city task08/city/*.cpp task08/city/*.h)
+
+add_executable(task08_task01 task08/task01.cpp ${task08_city} ${position})
+add_executable(task08_task02 task08/task02.cpp ${task08_city} ${position})
