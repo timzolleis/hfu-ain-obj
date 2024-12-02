@@ -8,7 +8,19 @@
 #include "../shared/position/position.h"
 #include "../shared/city/city.h"
 
+
+void printPosition() {
+    tz::Position position("Mordor", 47, 11);
+    std::cout<< position <<std::endl;
+}
+
+void printCity() {
+    std::string pois[]={"Sauron", "Minas Morgul", "Orodruin"};
+    tz::City city("Mordor", 47, 11,pois,3);
+    std::cout<< city <<std::endl;
+}
+
 int main() {
-    tz::City city("Test", 12, 14,  new std::string[2]{"Test1", "Test2"}, 2);
-    std::cout << city << std::endl;
+    printPosition();
+    printCity();
 }

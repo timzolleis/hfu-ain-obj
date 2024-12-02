@@ -35,7 +35,6 @@ void sortPositionsTest() {
         tz::Position("Mordor", 48, 11),
         tz::Position("Mordor", 47, 12)
     };
-    std::cout << "Test 1" << std::endl;
     test_sort(testCases, 5);
 }
 
