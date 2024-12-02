@@ -51,7 +51,10 @@ namespace tz {
 
         int getNumberOfPOIs() const;
 
+        std::string &operator[](int index);
         const std::string &operator[](int index) const;
+        City &operator=(const City &other);
+
 
         void add(const std::string &poiName);
 

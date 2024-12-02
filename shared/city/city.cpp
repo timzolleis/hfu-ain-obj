@@ -60,10 +60,7 @@ namespace tz {
         return this->currentSize;
     }
 
-    const std::string &City::operator[](int index) const {
-        this->validateIndexOrThrow(index);
-        return this->getPOI(index);
-    }
+
 
     const std::string &City::getPOI(const int index) const {
         this->validateIndexOrThrow(index);
@@ -139,5 +136,25 @@ namespace tz {
             os << city.pointsOfInterest[i] << std::endl;
         }
         return os;
+    }
+
+    std::string &City::operator[](int index) {
+        this->validateIndexOrThrow(index);
+        return pointsOfInterest[index];
+    }
+
+    const std::string &City::operator[](int index) const {
+        this->validateIndexOrThrow(index);
+        return pointsOfInterest[index];
+    }
+
+    City &City::operator=(const City &other) {
+        if (this != &other) {
+            this->position = other.position;
+            this->currentSize = other.currentSize;
+            delete[] this->pointsOfInterest;
+            this->pointsOfInterest = initializePointsOfInterest(other.pointsOfInterest, other.currentSize);
+        }
+        return *this;
     }
 }
