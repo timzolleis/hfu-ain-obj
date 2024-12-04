@@ -13,7 +13,7 @@ namespace tz {
     class City {
     private:
         Position position;
-        std::string *pointsOfInterest;
+        std::unique_ptr<std::string[]> pointsOfInterest;
         int currentSize = 0;
 
         void validateIndexOrThrow(int index) const;
@@ -22,13 +22,17 @@ namespace tz {
 
         friend std::ostream &operator<<(std::ostream &os, const City &city);
 
-        static std::string *initializePointsOfInterest(const std::string pointsOfInterest[], int length);
+        static std::unique_ptr<std::string[]> createPointsOfInterest(const std::string pointsOfInterest[], int length);
 
         City(const Position &position, const std::string pointsOfInterest[], int poiLength);
 
-        void resizePointsOfInterest(int newSize, int oldSize);
+        void resizePointsOfInterest(int newSize);
 
         int determineNewSize(const std::string &poiToRemove) const;
+
+        const std::string &getPOI(int index) const;
+
+        void setPOI(int index, const std::string &poi) const;
 
     public:
         City(const City &other);
@@ -36,12 +40,6 @@ namespace tz {
         City(const std::string &name, int x, int y, std::string *pois, int length);
 
         City(const std::string &name, int x, int y);
-
-        const std::string &getPOI(int index) const;
-
-        void setPOI(int index, const std::string &poi) const;
-
-        ~City();
 
         const std::string &getName() const;
 
@@ -52,9 +50,7 @@ namespace tz {
         int getNumberOfPOIs() const;
 
         std::string &operator[](int index);
-
         const std::string &operator[](int index) const;
-
         City &operator=(const City &other);
 
 

@@ -9,31 +9,28 @@
 
 
 namespace tz {
-    City::City(const City &other):City(other.position, other.pointsOfInterest, other.currentSize) {
+
+    //Constructor implementation
+    City::City(const Position &position, const std::string pointsOfInterest[], int poiLength): position(position),
+         pointsOfInterest(createPointsOfInterest(pointsOfInterest, poiLength)), currentSize(poiLength) {
+    }
+
+    City::City(const City &other): City(other.position, other.pointsOfInterest.get(), other.currentSize) {
     }
 
     City::City(const std::string &name, int x, int y, std::string *pois, int length): City(Position(name, x, y), pois,
         length) {
     }
 
-
-    City::City(const Position &position, const std::string pointsOfInterest[], int poiLength): position(position),
-        pointsOfInterest(initializePointsOfInterest(pointsOfInterest, poiLength)), currentSize(poiLength) {
-    }
-
     City::City(const std::string &name, int x, int y): City(Position(name, x, y), nullptr, 0) {
-
     }
 
-    City::~City() {
-        delete[] pointsOfInterest;
-    }
 
-    std::string *City::initializePointsOfInterest(const std::string *pointsOfInterest, int length) {
+    std::unique_ptr<std::string[]> City::createPointsOfInterest(const std::string *pointsOfInterest, int length) {
         if (length > 0 && pointsOfInterest == nullptr) {
             throw std::invalid_argument("Please provide matching pointer and length");
         }
-        auto *result = new std::string[length];
+        auto result = std::make_unique<std::string[]>(length);
         for (int i = 0; i < length; i++) {
             result[i] = pointsOfInterest[i];
         }
@@ -58,17 +55,15 @@ namespace tz {
     }
 
 
-
     const std::string &City::getPOI(const int index) const {
         this->validateIndexOrThrow(index);
         return this->pointsOfInterest[index];
     }
 
     void City::add(const std::string &poiName) {
-        const int oldSize = this->currentSize;
-        this->currentSize++;
-        this->resizePointsOfInterest(this->currentSize, oldSize);
-        this->setPOI(oldSize, poiName);
+        int index = this->currentSize;
+        this->resizePointsOfInterest(this->currentSize +1);
+        this->setPOI(index, poiName);
     }
 
     //This could be much smaller with std::remove_if, but im not sure if we're allowed to use that^^
@@ -77,7 +72,7 @@ namespace tz {
         if (newSize == this->currentSize) {
             return false;
         }
-        auto *newPointsOfInterest = new std::string[newSize];
+        auto newPointsOfInterest = std::make_unique<std::string[]>(newSize);
         int newIndex = 0;
         for (int i = 0; i < this->currentSize; ++i) {
             auto pointOfInterest = this->pointsOfInterest[i];
@@ -85,8 +80,7 @@ namespace tz {
                 newPointsOfInterest[newIndex++] = pointOfInterest;
             }
         }
-        delete[] this->pointsOfInterest;
-        this->pointsOfInterest = newPointsOfInterest;
+        this->pointsOfInterest = std::move(newPointsOfInterest);
         this->currentSize = newSize;
         return true;
     }
@@ -102,13 +96,13 @@ namespace tz {
     }
 
 
-    void City::resizePointsOfInterest(int newSize, int oldSize) {
-        auto *newPointsOfInterest = new std::string[newSize];
-        for (int i = 0; i < oldSize; i++) {
+    void City::resizePointsOfInterest(int newSize) {
+        auto newPointsOfInterest = std::make_unique<std::string[]>(newSize);
+        for (int i = 0; i < this->currentSize; i++) {
             newPointsOfInterest[i] = this->pointsOfInterest[i];
         }
-        delete[] this->pointsOfInterest;
-        this->pointsOfInterest = newPointsOfInterest;
+        this->pointsOfInterest = std::move(newPointsOfInterest);
+        this->currentSize = newSize;
     }
 
 
@@ -141,16 +135,14 @@ namespace tz {
     }
 
     const std::string &City::operator[](int index) const {
-        this->validateIndexOrThrow(index);
-        return pointsOfInterest[index];
+        return this->getPOI(index);
     }
 
     City &City::operator=(const City &other) {
         if (this != &other) {
             this->position = other.position;
             this->currentSize = other.currentSize;
-            delete[] this->pointsOfInterest;
-            this->pointsOfInterest = initializePointsOfInterest(other.pointsOfInterest, other.currentSize);
+            this->pointsOfInterest = createPointsOfInterest(other.pointsOfInterest.get(), other.currentSize);
         }
         return *this;
     }

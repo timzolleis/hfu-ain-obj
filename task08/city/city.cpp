@@ -9,10 +9,7 @@
 
 
 namespace tz {
-    City::City(const City &other): position(other.position),
-                                   pointsOfInterest(
-                                       initializePointsOfInterest(other.pointsOfInterest, other.currentSize)),
-                                   currentSize(other.currentSize) {
+    City::City(const City &other): City(other.position, other.pointsOfInterest, other.currentSize) {
     }
 
     City::City(const std::string &name, int x, int y, std::string *pois, int length): City(Position(name, x, y), pois,
@@ -24,9 +21,9 @@ namespace tz {
         pointsOfInterest(initializePointsOfInterest(pointsOfInterest, poiLength)), currentSize(poiLength) {
     }
 
-    City::City(const std::string &name, int x, int y): position(Position(name, x, y)),
-                                                       pointsOfInterest(nullptr) {
+    City::City(const std::string &name, int x, int y): City(Position(name, x, y), nullptr, 0) {
     }
+
 
     City::~City() {
         delete[] pointsOfInterest;
@@ -59,7 +56,6 @@ namespace tz {
     int City::getNumberOfPOIs() const {
         return this->currentSize;
     }
-
 
 
     const std::string &City::getPOI(const int index) const {
@@ -144,8 +140,7 @@ namespace tz {
     }
 
     const std::string &City::operator[](int index) const {
-        this->validateIndexOrThrow(index);
-        return pointsOfInterest[index];
+        return this->getPOI(index);
     }
 
     City &City::operator=(const City &other) {

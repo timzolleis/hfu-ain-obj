@@ -52,3 +52,9 @@ file(GLOB task08_city task08/city/*.cpp task08/city/*.h)
 
 add_executable(task08_task01 task08/task01.cpp ${task08_city} ${position})
 add_executable(task08_task02 task08/task02.cpp ${task08_city} ${position})
+
+file(GLOB task09_sort task09/sort*.h)
+file(GLOB task09_city task09/city/*.h task09/city/*.cpp)
+
+#Task09
+add_executable(task09_task01 task09/task01.cpp ${task09_sort} ${task09_city} ${position})
